@@ -13,7 +13,7 @@ const listController = {
             }
         });
 
-        return sendResponse(res, 200, `Found ${allPublished.length} events`);
+        return sendResponse(res, 200, `Found ${allPublished.length} events`, allPublished);
     }
 };
 
