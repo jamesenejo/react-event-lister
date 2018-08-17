@@ -1,0 +1,87 @@
+body {
+    background-color: rgb(238,242,244)
+}
+.navbar {
+    padding: 0 20px;
+}
+.navbar a {
+    color: white !important;
+}
+.navbar-nav {
+    align-items: center;
+}
+.dropdown-toggle:after {
+    content: none;
+}
+.user {
+    display: flex;
+    align-items: center;
+}
+.user-avatar {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.user-avatar img {
+    width: 100%;
+}
+.dropdown-menu {
+    left: unset;
+    right: 0;
+}
+.navbar .dropdown-item {
+    color: black !important;
+    text-align: center;
+}
+
+.container a {
+    text-decoration: none;
+    color: black;
+}
+.event-categories {
+    background-color: white;
+}
+.categories {
+    text-align: center;
+    margin-bottom: 50px;
+    box-shadow: 1px 0px 4px 0 rgba(0,0,0,.4);
+}
+.categories a {
+    display: inline-block;
+    color: black;
+}
+.event {
+    display: flex;
+    background-color: white;
+    height: 220px;
+    padding: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.4);
+    box-sizing: border-box;
+}
+.event p {
+    margin: 0 0 10px;
+}
+.image-div {
+    flex: 2;
+    overflow: hidden;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+.image-div img {
+    height: 100%;
+}
+.info-div {
+    flex: 3;
+}
+.metrics p {
+    display: inline-block;
+}
+.metrics p:first-child {
+    margin-right: 30px;
+}
