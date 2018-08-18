@@ -4,14 +4,56 @@ body {
 .navbar {
     padding: 0 20px;
 }
+.fa-bars {
+    font-size: 22px;
+    color: white;
+}
 .navbar a {
     color: white !important;
 }
 .navbar-nav {
     align-items: center;
+    flex-direction: row;
+}
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+.nav-item {
+    margin-right: 25px;
+}
+.nav-item:last-child {
+    margin-right: 0;
 }
 .dropdown-toggle:after {
     content: none;
+}
+.navbar .dropdown-item:hover {
+    background-color: #007bff;
+    color: white !important;
+}
+.nav-form {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: 30px;
+    padding: 0 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: .4s ease-in-out;
+}
+.fa-search {
+    margin-right: 5px;
+}
+.fa-bell {
+    font-size: 22px;
+}
+.nav-form input {
+    width: 170px;
+    border: none;
+}
+.nav-form input:focus {
+    outline: none;
 }
 .user {
     display: flex;
@@ -43,20 +85,29 @@ body {
 }
 .event-categories {
     background-color: white;
+    margin-bottom: 50px;
+    overflow: hidden;
+    box-shadow: 1px 0px 4px 0 rgba(0,0,0,.4);
 }
 .categories {
+    margin: 0 15px;
+    white-space: nowrap;
+    overflow-x: scroll;
     text-align: center;
-    margin-bottom: 50px;
-    box-shadow: 1px 0px 4px 0 rgba(0,0,0,.4);
 }
 .categories a {
     display: inline-block;
     color: black;
 }
+.categories a:first-child {
+    display: inline-block;
+    padding-left: 0;
+    color: black;
+}
 .event {
     display: flex;
     background-color: white;
-    height: 220px;
+    height: 300px;
     padding: 10px;
     margin-bottom: 30px;
     overflow: hidden;
@@ -78,10 +129,66 @@ body {
 }
 .info-div {
     flex: 3;
+    position: relative;
+}
+.metrics {
+    margin-bottom: 50px;
 }
 .metrics p {
     display: inline-block;
+    font-size: 13px;
+    color: rgb(100,100,100);
 }
 .metrics p:first-child {
-    margin-right: 30px;
+    margin-right: 20px;
+}
+.user-post {
+    position: absolute;
+    bottom: 0;
+    vertical-align: middle;
+
+}
+.profile-image {
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    margin-right: 5px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile-image img {
+    width: 100%;
+    height: 100%;
+}
+.post-stat {
+    display: inline-block;
+    vertical-align: middle;
+}
+.post-stat p {
+    margin: 0 0 5px;
+    font-size: 13px;
+    color: rgb(100,100,100);
+}
+.post-stat p:first-child {
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .event {
+        flex-direction: column;
+        height: unset;
+    }
+    .image-div {
+        flex: 3;
+        height: 180px;
+        margin: 0 0 20px;
+    }
+    .info-div {
+        flex: 2;
+    }
+
+    .image-div img {
+        width: 100%;
+        height: unset;
+    }
 }
