@@ -1,6 +1,7 @@
 import path from 'path';
 
 export default {
+    mode: 'development',
     entry: path.join(__dirname, '/client/index.js'),
     output: {
         filename: 'bundle.js'

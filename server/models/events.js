@@ -1,31 +1,39 @@
 const events = [
     {
         id: 1,
-        type: 'Birthday party',
-        venue: 'Eko Hotel',
-        time: '10:00am',
+        name: 'September boogie Down',
+        type: 'Entertainment',
+        going: 1234,
+        views: 4503,
+        userImage: 'https://via.placeholder.com/200x200',
         status: 'Published'
     },
     {
         id: 2,
-        type: 'Naming Ceremony',
-        venue: 'Eko Hotel',
-        time: '10:00am',
-        status: 'Unpublished'
+        name: 'Women in Power',
+        type: 'Debate',
+        going: 1724,
+        views: 6723,
+        userImage: 'https://via.placeholder.com/200x200',
+        status: 'Published'
     },
     {
         id: 3,
-        type: 'Launching',
-        venue: 'Eko Hotel',
-        time: '10:00am',
+        name: 'Kenzy Album Launch',
+        type: 'Entertainment',
+        going: 10724,
+        views: 266723,
+        userImage: 'https://via.placeholder.com/200x200',
         status: 'Published'
     },
     {
         id: 4,
-        type: 'Wedding',
-        venue: 'Eko Hotel',
-        time: '10:00am',
-        status: 'Unpublished'
+        name: 'A New Nigeria',
+        type: 'Rally',
+        going: 100724,
+        views: 3896723,
+        userImage: 'https://via.placeholder.com/200x200',
+        status: 'Published'
     },
 ];
 

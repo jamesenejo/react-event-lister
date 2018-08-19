@@ -1,7 +1,16 @@
 import React from 'react';
+import NavigationBar from './NavigationBar';
+import Events from './events/Events'
 
-const App = () =>  (
-    <h1>Hello from React</h1>
-);
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <NavigationBar />
+                <Events />
+            </div>
+        );
+    }
+}
 
 export default App;

@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser';
 import express from 'express';
+import path from 'path';
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config.dev';
@@ -12,5 +13,7 @@ const urlencoded = bodyParser.urlencoded({ extended: false });
 app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(urlencoded);
 app.use(routes);
+
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, './index.html')));
 
 app.listen(port);
