@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Spinner = () => (
-    <i className="fa fa-spinner fa-spin"></i>
+    <div className="text-center">
+        <i className="fa fa-spinner fa-spin"></i>
+    </div>
 )
 
 const CategoryBar = () => (
@@ -50,7 +52,10 @@ const PublishedEvent = (props) => (
 const AllPublishedEvents = (props) => (
     <div className="container">
         <div className="row">
-            {props.allEvents.map((eachEvent, i) => <PublishedEvent key={i} {...eachEvent} />)}
+            {props.allEvents.map((eachEvent, i) => {
+                console.log('some');
+                return <PublishedEvent key={i} {...eachEvent} />
+            })}
         </div>
     </div>
 )
@@ -61,6 +66,7 @@ class Events extends React.Component {
     }
 
     componentDidMount() {
+        console.log('something');
         fetch('/events')
             .then(res => res.json())
             .then(res => this.setState(prevState => ({

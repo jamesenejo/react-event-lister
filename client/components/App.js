@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationBar from './NavigationBar';
-import Events from './events/Events'
+import Events from './events/Events';
 
 class App extends React.Component {
     render() {
