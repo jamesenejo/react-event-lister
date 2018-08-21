@@ -1,100 +1,95 @@
-import events from '../models/events';
+import models from '../models/index';
 import reusables from '../reusables';
 
+const { Events } = models;
 const { sendResponse } = reusables;
 
 const listController = {
     getAllEvents: (req, res) => {
-        const allPublished = [];
-
-        events.forEach((publishedEvent) => {
-            if (publishedEvent.status === 'Published') {
-                allPublished.push(publishedEvent);
+        Events.all().then((allEvents) => {
+            if (allEvents.length === 0) {
+                return sendResponse(res, 404, 'No events at the moment');
             }
+            return sendResponse(res, 404, `Found ${allEvents.length} events`, allEvents);
         });
-
-        return sendResponse(res, 200, `Found ${allPublished.length} events`, allPublished);
     },
     getAnEvent: (req, res) => {
         const { eventId } = req.params;
-        let theEvent;
 
-        for (let i = 0; i < events.length; i += 1) {
-            if ((events[i].id === parseInt(eventId, 10)) && events[i].status === 'Published') {
-                theEvent = events[i];
-                break;
-            }
-        }
-
-        if (theEvent) {
-            return sendResponse(res, 200, 'Event found', theEvent);
-        }
-        return sendResponse(res, 404, 'Event not found');
+        Events.findById(eventId)
+            .then((theEvent) => {
+                if (theEvent === null) {
+                    return sendResponse(res, 404, 'Event not found');
+                }
+                return sendResponse(res, 200, 'Event found', theEvent);
+            });
     },
     createAnEvent: (req, res) => {
         const {
-            type, venue, time, status
+            eventName, type, venue, eventDate, eventTime, description, status
         } = req.body;
 
-        if (!type || !venue || !time || !status) {
+        if (!eventName || !type || !venue || !eventDate || !eventTime || !description || !status) {
             return sendResponse(res, 400, 'Please fill out all fields');
         }
 
         const newEvent = {
-            id: events.length + 1,
+            eventName,
             type,
             venue,
-            time,
+            eventDate,
+            eventTime,
+            description,
             status
         };
 
         // Persist new event data
-        events.push(newEvent);
+        Events.create(newEvent)
+            .then(() => sendResponse(res, 201, 'Event created'))
+            .catch(error => sendResponse(res, 500, 'An error occured', error));
 
-        return sendResponse(res, 201, 'Event created');
+        // return sendResponse(res, 201, 'Event created');
     },
     updateAnEvent: (req, res) => {
         const { eventId } = req.params;
         const {
-            type, venue, time, status
+            eventName, type, venue, eventDate, eventTime, description, status
         } = req.body;
-        let updatedEvent;
 
-        if (!type || !venue || !time || !status) {
+        if (!eventName || !type || !venue || !eventDate || !eventTime || !description || !status) {
             return sendResponse(res, 400, 'Please fill out all fields');
         }
 
-        for (let i = 0; i < events.length; i += 1) {
-            if (events[i].id === parseInt(eventId, 10)) {
-                events[i] = { ...events[i], ...req.body };
-                updatedEvent = events[i];
-                break;
-            }
-        }
+        const newEvent = {
+            eventName,
+            type,
+            venue,
+            eventDate,
+            eventTime,
+            description,
+            status
+        };
 
-        if (!updatedEvent) {
-            return sendResponse(res, 404, 'Event not found');
-        }
-
-        return sendResponse(res, 201, 'Event updated');
+        Events.update(newEvent, { where: { id: eventId } })
+            .then((eventData) => {
+                if (eventData[0] === 0) {
+                    return sendResponse(res, 200, 'Event not found');
+                }
+                return sendResponse(res, 200, 'Event updated successfully');
+            })
+            .catch(error => sendResponse(res, 500, 'An error occured', error));
     },
     deleteAnEvent: (req, res) => {
         const { eventId } = req.params;
-        let deletedEvent;
 
-        for (let i = 0; i < events.length; i += 1) {
-            if (events[i].id === parseInt(eventId, 10)) {
-                deletedEvent = events[i];
-                events.splice(i, 1);
-                break;
-            }
-        }
-
-        if (!deletedEvent) {
-            return sendResponse(res, 404, 'Event not found');
-        }
-
-        return sendResponse(res, 200, 'Event deleted');
+        Events.destroy({ where: { id: eventId } })
+            .then((eventData) => {
+                if (eventData === 0) {
+                    return sendResponse(res, 404, 'Event not found');
+                }
+                return sendResponse(res, 200, 'Event deleted successfully');
+            })
+            .catch(error => sendResponse(res, 500, 'There was a problem', error));
     }
 };
 

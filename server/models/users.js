@@ -1,25 +1,44 @@
-const users = [
-    {
-        id: 1,
-        firstname: 'John',
-        lastname: 'Mikel',
-        email: 'john@mikel.com',
-        password: 'pass'
-    },
-    {
-        id: 2,
-        firstname: 'Sarah',
-        lastname: 'Benard',
-        email: 'sarah@ben.com',
-        password: 'passed'
-    },
-    {
-        id: 3,
-        firstname: 'Elena',
-        lastname: 'James',
-        email: 'elena@james.com',
-        password: 'pass'
-    }
-];
+const users = (sequelize, DataTypes) => {
+    const Users = sequelize.define('Users', {
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        firstname: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        lastname: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    }, { freezeTableName: true });
+
+    Users.associate = (models) => {
+        Users.hasMany(models.Events, {
+            foreignKey: 'userId',
+            as: 'events'
+        });
+
+        Users.hasMany(models.Going, {
+            foreignKey: 'userId',
+            as: 'attendings'
+        });
+
+        Users.hasMany(models.Views, {
+            foreignKey: 'userId',
+            as: 'views'
+        });
+    };
+    return Users;
+};
 
 export default users;
