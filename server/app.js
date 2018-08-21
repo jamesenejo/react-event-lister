@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import path from 'path';
 import webpack from 'webpack';
@@ -12,6 +13,7 @@ const urlencoded = bodyParser.urlencoded({ extended: false });
 
 app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(urlencoded);
+app.use(cookieParser());
 app.use(routes);
 
 app.get('/*', (req, res) => res.sendFile(path.join(__dirname, './index.html')));

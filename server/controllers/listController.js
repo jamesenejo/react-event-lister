@@ -28,6 +28,7 @@ const listController = {
         const {
             eventName, type, venue, eventDate, eventTime, description, status
         } = req.body;
+        const { userId } = req.authData;
 
         if (!eventName || !type || !venue || !eventDate || !eventTime || !description || !status) {
             return sendResponse(res, 400, 'Please fill out all fields');
@@ -40,7 +41,8 @@ const listController = {
             eventDate,
             eventTime,
             description,
-            status
+            status,
+            userId
         };
 
         // Persist new event data
@@ -51,6 +53,7 @@ const listController = {
         // return sendResponse(res, 201, 'Event created');
     },
     updateAnEvent: (req, res) => {
+        const { userId } = req.authData;
         const { eventId } = req.params;
         const {
             eventName, type, venue, eventDate, eventTime, description, status
@@ -67,7 +70,8 @@ const listController = {
             eventDate,
             eventTime,
             description,
-            status
+            status,
+            userId
         };
 
         Events.update(newEvent, { where: { id: eventId } })
