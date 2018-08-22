@@ -15,13 +15,13 @@ module.exports = {
                 as: 'userId'
             }
         },
-        eventsId: {
+        eventId: {
             type: Sequelize.INTEGER,
             onDelete: 'CASCADE',
             references: {
                 model: 'Events',
                 key: 'id',
-                as: 'eventsId'
+                as: 'eventId'
             }
         },
         createdAt: {

@@ -34,6 +34,12 @@ module.exports = {
             type: Sequelize.STRING,
             allowNull: false
         },
+        views: {
+            type: Sequelize.INTEGER
+        },
+        attendingEvent: {
+            type: Sequelize.INTEGER
+        },
         userId: {
             type: Sequelize.INTEGER,
             onDelete: 'CASCADE',

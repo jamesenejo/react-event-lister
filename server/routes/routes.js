@@ -7,6 +7,7 @@ const routes = express.Router();
 const {
     getAllEvents,
     getAnEvent,
+    attendingEvent,
     createAnEvent,
     updateAnEvent,
     deleteAnEvent
@@ -18,6 +19,7 @@ const { authenticateUser, authoriseUser } = protect;
 
 routes.get('/events', getAllEvents);
 routes.get('/events/:eventId', getAnEvent);
+routes.post('/events/:eventId', authenticateUser, attendingEvent);
 routes.post('/users/events', authenticateUser, createAnEvent);
 routes.put('/users/events/:eventId', authenticateUser, authoriseUser, updateAnEvent);
 routes.delete('/users/events/:eventId', authenticateUser, authoriseUser, deleteAnEvent);

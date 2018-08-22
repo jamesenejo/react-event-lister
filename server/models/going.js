@@ -4,7 +4,7 @@ const going = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        eventsId: {
+        eventId: {
             type: DataTypes.STRING,
             allowNull: false
         }
@@ -17,7 +17,7 @@ const going = (sequelize, DataTypes) => {
         });
 
         Going.belongsTo(models.Events, {
-            foreignKey: 'eventsId',
+            foreignKey: 'eventId',
             as: 'going'
         });
     };

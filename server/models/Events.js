@@ -38,6 +38,12 @@ const events = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        views: {
+            type: DataTypes.STRING
+        },
+        attendingEvent: {
+            type: DataTypes.STRING
+        },
         status: {
             type: DataTypes.STRING,
             allowNull: false
@@ -51,13 +57,8 @@ const events = (sequelize, DataTypes) => {
         });
 
         Events.hasMany(models.Going, {
-            foreignKey: 'eventsId',
+            foreignKey: 'eventId',
             as: 'going'
-        });
-
-        Events.hasMany(models.Views, {
-            foreignKey: 'eventsId',
-            as: 'views'
         });
     };
     return Events;

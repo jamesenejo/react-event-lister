@@ -32,11 +32,6 @@ const users = (sequelize, DataTypes) => {
             foreignKey: 'userId',
             as: 'attendings'
         });
-
-        Users.hasMany(models.Views, {
-            foreignKey: 'userId',
-            as: 'views'
-        });
     };
     return Users;
 };
